@@ -5,91 +5,70 @@ class TelephoneFinder {
     private val result = mutableSetOf<String>()
 
     fun findAllNumbersFromGivenNumber(number: String): Array<String>? {
-        return if (number.toInt()>0){
+
+        return if (number.toInt() >= 0) {
             for (i in number.indices) {
-                changeToNeighbor(number,i)
+                changeToNeighbor(number, i)
             }
-            println(result)
             result.toTypedArray()
-        } else{
+        } else {
             null
         }
     }
 
-    private fun changeToNeighbor(s: String, index: Int){
+    private fun changeToNeighbor(s: String, index: Int) {
         val strBf = StringBuffer(s)
-        when (strBf[index]){
+        when (strBf[index]) {
             '1' -> {
-                strBf.setCharAt(index,'2')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'4')
+                alterStringBuffer(strBf, index, '2')
+                alterStringBuffer(strBf, index, '4')
             }
             '2' -> {
-                strBf.setCharAt(index,'1')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'3')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'5')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '1')
+                alterStringBuffer(strBf, index, '3')
+                alterStringBuffer(strBf, index, '5')
             }
             '3' -> {
-                strBf.setCharAt(index,'2')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'6')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '2')
+                alterStringBuffer(strBf, index, '6')
             }
             '4' -> {
-                strBf.setCharAt(index,'1')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'5')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'7')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '1')
+                alterStringBuffer(strBf, index, '5')
+                alterStringBuffer(strBf, index, '7')
             }
             '5' -> {
-                strBf.setCharAt(index,'2')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'4')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'6')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'8')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '2')
+                alterStringBuffer(strBf, index, '4')
+                alterStringBuffer(strBf, index, '6')
+                alterStringBuffer(strBf, index, '8')
             }
             '6' -> {
-                strBf.setCharAt(index,'3')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'5')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'9')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '3')
+                alterStringBuffer(strBf, index, '5')
+                alterStringBuffer(strBf, index, '9')
             }
             '7' -> {
-                strBf.setCharAt(index,'4')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'8')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '4')
+                alterStringBuffer(strBf, index, '8')
+                strBf.setCharAt(index, '4')
             }
             '8' -> {
-                strBf.setCharAt(index,'5')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'7')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'9')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'0')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '5')
+                alterStringBuffer(strBf, index, '7')
+                alterStringBuffer(strBf, index, '9')
+                alterStringBuffer(strBf, index, '0')
             }
             '9' -> {
-                strBf.setCharAt(index,'6')
-                result.add(strBf.toString())
-                strBf.setCharAt(index,'8')
-                result.add(strBf.toString())
+                alterStringBuffer(strBf, index, '6')
+                alterStringBuffer(strBf, index, '8')
             }
-            '0' -> {
-                strBf.setCharAt(index,'8')
-                result.add(strBf.toString())
-            }
+            '0' -> alterStringBuffer(strBf, index, '8')
         }
+    }
+
+    private fun alterStringBuffer(strBf: StringBuffer, index: Int, char: Char) {
+        strBf.setCharAt(index, char)
+        result.add(strBf.toString())
     }
 }
